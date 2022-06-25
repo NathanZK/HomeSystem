@@ -16,11 +16,7 @@ def create_app():
 
     db.init_app(app)
 
-    with app.app_context():
-        db.create_all()
-
-
-
+   
     from .views import views
     from .auth import auth
 
@@ -34,6 +30,13 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+  
+    
+    db.create_all()
+
+    # with app.app_context():
+    #     db.create_all()
+
 
 
 
@@ -44,6 +47,9 @@ def create_app():
         
 
     return app
+
+
+
 
 
 def create_database(app):
