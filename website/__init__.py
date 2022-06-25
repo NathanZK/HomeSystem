@@ -25,21 +25,14 @@ def create_app():
 
     from .models import User, Room
 
-    create_database(app)
+    # create_database(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
   
     
-    db.create_all()
-
-    # with app.app_context():
-    #     db.create_all()
-
-
-
-
+    
 
     @login_manager.user_loader
     def load_user(id):
