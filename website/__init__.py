@@ -4,6 +4,7 @@ from os import path
 from flask_login import LoginManager
 
 db = SQLAlchemy()
+
 DB_NAME = "smarthome.db"
 
 
@@ -14,6 +15,11 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://jwvxrnycjiuiya:cd58b20126af4c856c34f6613271b0d9fe7b9ff55599d5324228eca792275baa@ec2-34-194-73-236.compute-1.amazonaws.com:5432/d8qu6vjf3b17d4'
 
     db.init_app(app)
+
+    with app.app_context():
+        db.create_all()
+
+
 
     from .views import views
     from .auth import auth
