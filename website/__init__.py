@@ -1,10 +1,11 @@
 from flask import Flask
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 
 db = SQLAlchemy()
-
+migrate = Migrate(db)
 DB_NAME = "smarthome.db"
 
 
@@ -25,7 +26,7 @@ def create_app():
 
     from .models import User, Room
 
-    create_database(app)
+    # create_database(app)
     #db.create_all(app)
 
     login_manager = LoginManager()
