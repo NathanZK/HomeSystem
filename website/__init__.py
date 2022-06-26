@@ -26,7 +26,7 @@ def create_app():
     from .models import User, Room
 
     # create_database(app)
-    db.create_all(app=app)
+    db.create_all()
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
