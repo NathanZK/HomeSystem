@@ -10,10 +10,10 @@ DB_NAME = "smarthome.db"
 
 def create_app():
     app = Flask(__name__)
-  #  app.config['SECRET_KEY'] = 'jwvxrnycjiuiya'
-   # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://iyrnuskvuduxvu:3e08e0a7c29702ee95a8bc36e5b92aaa50cf9ae5e27487639f5cae7635142bfa@ec2-3-224-8-189.compute-1.amazonaws.com:5432/d4b6mr28e6a495'
     app.config['SECRET_KEY'] = 'KEY'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+   # app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://iyrnuskvuduxvu:3e08e0a7c29702ee95a8bc36e5b92aaa50cf9ae5e27487639f5cae7635142bfa@ec2-3-224-8-189.compute-1.amazonaws.com:5432/d4b6mr28e6a495'
+   # app.config['SECRET_KEY'] = 'KEY'
 
 
     db.init_app(app)
@@ -27,8 +27,8 @@ def create_app():
 
     from .models import User, Room
 
-    # create_database(app)
-    #db.create_all(app)
+    create_database(app)
+    
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

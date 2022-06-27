@@ -66,37 +66,37 @@ def devices(name):
             sleep(1)
    
 
-        GPIO.setmode(GPIO.BOARD)
+        # GPIO.setmode(GPIO.BOARD)
 
-        GPIO.setup(11,GPIO.OUT)
-        GPIO.output(11,1)
-        GPIO.setup(13,GPIO.OUT)
-        GPIO.output(13,1)
-        GPIO.setup(15,GPIO.OUT)
-        GPIO.output(15,1)
+        # GPIO.setup(11,GPIO.OUT)
+        # GPIO.output(11,1)
+        # GPIO.setup(13,GPIO.OUT)
+        # GPIO.output(13,1)
+        # GPIO.setup(15,GPIO.OUT)
+        # GPIO.output(15,1)
 
-        hex = request.form.get('rgb').lstrip('#')
-        rgbValue =  tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
+        # hex = request.form.get('rgb').lstrip('#')
+        # rgbValue =  tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
         
-        if rgbValue[0] <125:
-            red = 0
-        else:
-            red = 1
+        # if rgbValue[0] <125:
+        #     red = 0
+        # else:
+        #     red = 1
  
-        if rgbValue[1] <125:
-            green = 0
-        else:
-            green = 1
+        # if rgbValue[1] <125:
+        #     green = 0
+        # else:
+        #     green = 1
 
-        if rgbValue[2] <125:
-            blue = 0
-        else:
-            blue = 1
+        # if rgbValue[2] <125:
+        #     blue = 0
+        # else:
+        #     blue = 1
 
               
-        GPIO.output(11,int(red))
-        GPIO.output(13,int(green))
-        GPIO.output(15,int(blue))
+        # GPIO.output(11,int(red))
+        # GPIO.output(13,int(green))
+        # GPIO.output(15,int(blue))
         
        
     db.session.commit()       

@@ -1,5 +1,5 @@
 from website import create_app
-dbapp = create_app()
+
 
 app = create_app()
 
