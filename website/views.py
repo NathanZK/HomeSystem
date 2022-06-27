@@ -6,8 +6,8 @@ from .models import Room
 from . import db
 import json
 
-#import Adafruit_DHT
-# import RPi.GPIO as GPIO
+import Adafruit_DHT
+import RPi.GPIO as GPIO
 
 
 
@@ -37,13 +37,14 @@ def rooms():
 @login_required
 
 def devices(name):
-    # from gpiozero import Servo
-    # from time import sleep
-    # myGPIO = 25
-    # myCorrection = 0.45
-    # maxPW = (2.0 + myCorrection) / 1000
-    # minPW = (1.0 - myCorrection) / 1000
-    # servo = Servo(myGPIO, min_pulse_width = minPW, max_pulse_width=maxPW)
+    
+    from gpiozero import Servo
+    from time import sleep
+    myGPIO = 25
+    myCorrection = 0.45
+    maxPW = (2.0 + myCorrection) / 1000
+    minPW = (1.0 - myCorrection) / 1000
+    servo = Servo(myGPIO, min_pulse_width = minPW, max_pulse_width=maxPW)
 
     
 
@@ -55,47 +56,47 @@ def devices(name):
         if request.form['submit_button'] == 'Lock':
             room.lockstatus= "Locked"
             str = room.lockstatus
-            # servo.min()
-            # servo.min()
-            # sleep(1)
+            servo.min()
+            servo.min()
+            sleep(1)
         elif request.form['submit_button'] == 'Unlock':
             room.lockstatus="Unlocked"
             str = room.lockstatus
-            # servo.max()
-            # sleep(1)
+            servo.max()
+            sleep(1)
    
 
-        # GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BOARD)
 
-        # GPIO.setup(11,GPIO.OUT)
-        # GPIO.output(11,1)
-        # GPIO.setup(13,GPIO.OUT)
-        # GPIO.output(13,1)
-        # GPIO.setup(15,GPIO.OUT)
-        # GPIO.output(15,1)
+        GPIO.setup(11,GPIO.OUT)
+        GPIO.output(11,1)
+        GPIO.setup(13,GPIO.OUT)
+        GPIO.output(13,1)
+        GPIO.setup(15,GPIO.OUT)
+        GPIO.output(15,1)
 
-        # hex = request.form.get('rgb').lstrip('#')
-        # rgbValue =  tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
+        hex = request.form.get('rgb').lstrip('#')
+        rgbValue =  tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
         
-        # if rgbValue[0] <125:
-        #     red = 0
-        # else:
-        #     red = 1
+        if rgbValue[0] <125:
+            red = 0
+        else:
+            red = 1
  
-        # if rgbValue[1] <125:
-        #     green = 0
-        # else:
-        #     green = 1
+        if rgbValue[1] <125:
+            green = 0
+        else:
+            green = 1
 
-        # if rgbValue[2] <125:
-        #     blue = 0
-        # else:
-        #     blue = 1
+        if rgbValue[2] <125:
+            blue = 0
+        else:
+            blue = 1
 
               
-        # GPIO.output(11,int(red))
-        # GPIO.output(13,int(green))
-        # GPIO.output(15,int(blue))
+        GPIO.output(11,int(red))
+        GPIO.output(13,int(green))
+        GPIO.output(15,int(blue))
         
        
     db.session.commit()       
